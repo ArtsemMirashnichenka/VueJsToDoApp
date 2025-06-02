@@ -1,15 +1,7 @@
 <template>
   <v-form @submit.prevent="handleAdd">
-    <v-text-field
-      v-model="text"
-      label="Add a new task"
-      dense
-      outlined
-      hide-details
-    />
-    <v-btn type="submit" color="primary" class="mt-2">
-      Add
-    </v-btn>
+    <v-text-field v-model="text" label="Add a new task" dense outlined hide-details />
+    <v-btn type="submit" color="primary" class="mt-2"> Add </v-btn>
   </v-form>
 </template>
 

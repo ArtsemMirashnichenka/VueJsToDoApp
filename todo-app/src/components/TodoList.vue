@@ -14,7 +14,7 @@
 import TodoItem from './TodoItem.vue'
 
 defineProps({
-  todos: Array
+  todos: Array,
 })
 defineEmits(['toggle-completed', 'delete-todo'])
 </script>

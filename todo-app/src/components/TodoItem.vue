@@ -1,11 +1,7 @@
 <template>
   <v-list-item>
     <template #prepend>
-      <v-checkbox
-        v-model="localCompleted"
-        @change="toggle"
-        :label="todo.text"
-      />
+      <v-checkbox v-model="localCompleted" @change="toggle" :label="todo.text" />
     </template>
 
     <template #append>
@@ -20,7 +16,7 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  todo: Object
+  todo: Object,
 })
 const emit = defineEmits(['toggle-completed', 'delete-todo'])
 

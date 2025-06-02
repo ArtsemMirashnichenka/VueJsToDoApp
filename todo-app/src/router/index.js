@@ -4,10 +4,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', component: TodoPage },
-  { path: '/settings', component: SettingsPage}
+  { path: '/settings', component: SettingsPage },
 ]
 
 export default createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
