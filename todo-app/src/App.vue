@@ -1,47 +1,49 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <v-app>
+    <v-main>
+      <v-container max-width="600">
+        <h1>Simple TODO app</h1>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+        <TodoInputForm @add-todo="addTodo" />
 
-  <main>
-    <TheWelcome />
-  </main>
+        <TodoList
+          :todos="todos"
+          @toggle-completed="toggleTodo"
+          @delete-todo="deleteTodo"
+        />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+
+<script setup>
+import { ref } from 'vue'
+import TodoInputForm from './components/TodoInputForm.vue'
+import TodoList from './components/TodoList.vue'
+
+const todos = ref([
+  { id: 1, text: 'Test task 1', completed: false },
+  { id: 2, text: 'Test task 2', completed: true },
+])
+
+function addTodo(text) {
+  todos.value.push({
+    id: Date.now(),
+    text,
+    completed: false
+  })
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+function toggleTodo(id) {
+  console.log(id);
+  
+  const todo = todos.value.find(t => t.id === id)
+  console.log(todo);
+  if (todo) todo.completed = !todo.completed
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+function deleteTodo(id) {
+  todos.value = todos.value.filter(t => t.id !== id)
 }
-</style>
+</script>
