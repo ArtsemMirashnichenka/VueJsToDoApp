@@ -1,7 +1,9 @@
 <template>
   <v-container max-width="600">
     <h1>Hello, {{ userName }}!</h1>
-    <h1 v-if="showWeather">Weather here</h1>
+
+    <WeatherWidget v-if="showWeather" />
+
     <TodoInputForm @add-todo="addTodo" />
 
     <TodoList :todos="todos" @toggle-completed="toggleTodo" @delete-todo="deleteTodo" />
@@ -13,6 +15,7 @@ import { computed, ref } from 'vue'
 import TodoInputForm from '@/components/TodoInputForm.vue'
 import TodoList from '@/components/TodoList.vue'
 import { useStore } from 'vuex'
+import WeatherWidget from '@/components/WeatherWidget.vue'
 
 const todos = ref([
   { id: 1, text: 'Test task 1', completed: false },
